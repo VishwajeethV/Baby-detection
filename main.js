@@ -7,12 +7,19 @@ function preload() {
 }
 
 function setup() {
-    canvas=createCanvas(500,300);
+    canvas=createCanvas(500,350);
     canvas.center();
     video=createCapture(VIDEO);
     video.hide();
+}
+
+
+function start() {
     objectdetector=ml5.objectDetector("cocossd",modelloaded);
     document.getElementById("Status").innerHTML="status = detecting";
+}
+
+
 
 function modelloaded() {
     console.log("model is loaded");
@@ -30,7 +37,7 @@ else{
 }
 
 function draw() { 
-    image(video,0,0,500,300);
+    image(video,0,0,500,350);
     if(status!="") {
         objectdetector.detect(video,getresults);
         for(var i=0;i<humans.length;i++) {
@@ -54,4 +61,3 @@ function draw() {
         
     }
   }
-}
